@@ -31,7 +31,7 @@ Segment-and-Track-Human-Using-Wireless-Signal/
           └── s1p2_10
 ```   
        
-### 3. Run main.sh for training   
+### 3. Run main.sh for train
 ```
 $ cd ~/Segment-and-Track-Human-Using-Wireless-Signal
 $ sh train.sh
