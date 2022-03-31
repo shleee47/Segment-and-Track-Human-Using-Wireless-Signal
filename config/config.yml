@@ -1,0 +1,70 @@
+use_tb_logger: true
+
+#### datasets
+datasets:
+  main: ./dataset
+  test: ./dataset
+
+dataloader:
+  train:
+    batch_size: 32
+    shuffle: true
+    # pin_memeory: true
+    #num_workers: 20
+    num_workers: 0
+
+  valid:
+    batch_size: 32
+    shuffle: true
+    # pin_memeory: true
+    num_workers: 20
+
+  test:
+    batch_size: 1
+    shuffle: false
+    # pin_memeory: true
+    num_workers: 20
+
+#### network structures
+MYNET:
+  embed_size: 8
+  sequence_size: 16 # Temporal duration of input clips
+  encoder: resnet50
+  n_classes: 3
+  input_size: 224
+  pretrained: true
+  num_layers: 1
+  bidirectional: false
+
+#### training settings: learning rate scheme, loss
+trainer:
+  epochs: 50
+  device: 1
+  save_path: ./tb/
+  comment: debugging test
+
+tester:
+  ckpt_path: ./tb/test/test/pth
+  device: 2 
+
+
+criterion:
+  #name: regression
+  name: BCEWithLogits
+  #name: BCE
+
+#### Optimizer settings
+optimizer:
+  name: Adam   ## Adam, RMSprop, SGD
+  lr: !!float 0.001
+  # betas: (0.9, 0.999)
+  eps: !!float 1e-5
+  weight_decay: !!float 1e-3
+
+
+#### scheduler settings
+scheduler:
+  name: plateau
+  min_lr: !!float 1e-8
+  patience: 2
+  factor: 0.5
