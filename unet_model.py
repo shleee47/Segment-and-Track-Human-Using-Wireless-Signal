@@ -14,7 +14,7 @@ class UNet(nn.Module):
         self.n_classes = n_classes
         self.bilinear = bilinear
 
-        self.upsample = nn.Upsample(size=(224,224), mode='bilinear', align_corners=True)
+        self.upsample = nn.Upsample(size=(300,540), mode='bilinear', align_corners=True)
         self.inc = DoubleConv(self.n_channels, 64)
         self.down1 = Down(64, 128)
         self.down2 = Down(128, 256)
